@@ -1,0 +1,242 @@
+﻿[
+    {
+        "file":  "bg_hutan_rusak.png",
+        "x":  6,
+        "y":  26,
+        "width":  644,
+        "height":  360,
+        "transparent":  false
+    },
+    {
+        "file":  "bg_hutan_pulih.png",
+        "x":  662,
+        "y":  26,
+        "width":  644,
+        "height":  360,
+        "transparent":  false
+    },
+    {
+        "file":  "damage_tree_stump.png",
+        "x":  14,
+        "y":  462,
+        "width":  143,
+        "height":  123,
+        "transparent":  false
+    },
+    {
+        "file":  "damage_dead_tree.png",
+        "x":  171,
+        "y":  460,
+        "width":  139,
+        "height":  125,
+        "transparent":  false
+    },
+    {
+        "file":  "damage_bare_ground.png",
+        "x":  322,
+        "y":  468,
+        "width":  155,
+        "height":  117,
+        "transparent":  false
+    },
+    {
+        "file":  "damage_destroyed_habitat.png",
+        "x":  490,
+        "y":  468,
+        "width":  155,
+        "height":  117,
+        "transparent":  false
+    },
+    {
+        "file":  "forest_branch_large.png",
+        "x":  669,
+        "y":  476,
+        "width":  116,
+        "height":  109,
+        "transparent":  false
+    },
+    {
+        "file":  "forest_branch_small.png",
+        "x":  800,
+        "y":  480,
+        "width":  113,
+        "height":  105,
+        "transparent":  false
+    },
+    {
+        "file":  "forest_trash_plastic.png",
+        "x":  927,
+        "y":  480,
+        "width":  114,
+        "height":  105,
+        "transparent":  false
+    },
+    {
+        "file":  "forest_rock_debris.png",
+        "x":  1054,
+        "y":  480,
+        "width":  114,
+        "height":  105,
+        "transparent":  false
+    },
+    {
+        "file":  "forest_debris_bundle.png",
+        "x":  1181,
+        "y":  480,
+        "width":  119,
+        "height":  105,
+        "transparent":  false
+    },
+    {
+        "file":  "planting_spot.png",
+        "x":  15,
+        "y":  679,
+        "width":  117,
+        "height":  99,
+        "transparent":  false
+    },
+    {
+        "file":  "tree_seedling.png",
+        "x":  145,
+        "y":  676,
+        "width":  118,
+        "height":  102,
+        "transparent":  false
+    },
+    {
+        "file":  "tree_growth_stage1.png",
+        "x":  278,
+        "y":  662,
+        "width":  119,
+        "height":  116,
+        "transparent":  false
+    },
+    {
+        "file":  "tree_growth_stage2.png",
+        "x":  410,
+        "y":  662,
+        "width":  135,
+        "height":  116,
+        "transparent":  false
+    },
+    {
+        "file":  "tree_restored_small.png",
+        "x":  561,
+        "y":  658,
+        "width":  151,
+        "height":  120,
+        "transparent":  false
+    },
+    {
+        "file":  "forest_grass_patch.png",
+        "x":  735,
+        "y":  674,
+        "width":  136,
+        "height":  104,
+        "transparent":  false
+    },
+    {
+        "file":  "forest_flower_small.png",
+        "x":  883,
+        "y":  674,
+        "width":  129,
+        "height":  104,
+        "transparent":  false
+    },
+    {
+        "file":  "forest_bush_green.png",
+        "x":  1024,
+        "y":  674,
+        "width":  134,
+        "height":  104,
+        "transparent":  false
+    },
+    {
+        "file":  "forest_moss_patch.png",
+        "x":  1174,
+        "y":  674,
+        "width":  125,
+        "height":  104,
+        "transparent":  false
+    },
+    {
+        "file":  "forest_bird.png",
+        "x":  17,
+        "y":  852,
+        "width":  116,
+        "height":  121,
+        "transparent":  false
+    },
+    {
+        "file":  "forest_butterfly.png",
+        "x":  148,
+        "y":  856,
+        "width":  123,
+        "height":  117,
+        "transparent":  false
+    },
+    {
+        "file":  "forest_deer_small.png",
+        "x":  284,
+        "y":  848,
+        "width":  155,
+        "height":  125,
+        "transparent":  false
+    },
+    {
+        "file":  "fx_plant_growth.png",
+        "x":  465,
+        "y":  851,
+        "width":  146,
+        "height":  123,
+        "transparent":  false
+    },
+    {
+        "file":  "fx_leaf_particle.png",
+        "x":  626,
+        "y":  851,
+        "width":  143,
+        "height":  123,
+        "transparent":  false
+    },
+    {
+        "file":  "fx_forest_light.png",
+        "x":  785,
+        "y":  850,
+        "width":  146,
+        "height":  124,
+        "transparent":  false
+    },
+    {
+        "file":  "forest_planting_area.png",
+        "x":  958,
+        "y":  845,
+        "width":  341,
+        "height":  139,
+        "transparent":  false
+    },
+    {
+        "file":  "mc_check_tree.png",
+        "x":  18,
+        "y":  1043,
+        "width":  155,
+        "height":  126,
+        "transparent":  false
+    },
+    {
+        "file":  "mc_clean_forest.png",
+        "x":  189,
+        "y":  1043,
+        "width":  159,
+        "height":  126,
+        "transparent":  false
+    },
+    {
+        "file":  "mc_plant_tree.png",
+        "x":  362,
+        "y":  1043,
+        "width":  158,
+        "height":  126,
+        "transparent":  false
+    }
+]

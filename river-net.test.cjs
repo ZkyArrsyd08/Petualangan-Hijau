@@ -1,0 +1,20 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+function node(){return {style:{},classList:{remove(){}},setAttribute(){},appendChild(){},addEventListener(){},remove(){},getBoundingClientRect:()=>({left:0,top:0,width:1000,height:600})};}
+const nodes=new Map();const $=s=>{if(!nodes.has(s))nodes.set(s,node());return nodes.get(s)};
+const context=vm.createContext({$,document:{createElement:node},paused:false,riverMiniGame:null,riverGameplay:false,riverNetX:50,riverNetCaught:0,riverFloating:[],riverTime:100,movementKeys:new Set(),floatingAssets:['x.png'],updateRiverMotion(){},showGlobalToast(){},playAudio(){},playDisposeSound(){},updateRiverTimer(){},finishNetGame:()=>{context.won=true;context.riverMiniGame=null},riverGameOver:reason=>{context.lost=reason||'time';context.riverMiniGame=null}});
+const combinedSource=fs.readFileSync('game.js','utf8');
+const moduleStart=combinedSource.indexOf('// MODULE TERGABUNG: river-net.js');
+const moduleEnd=combinedSource.indexOf('// MODULE TERGABUNG: factory-assets.js',moduleStart+1);
+const moduleSource=combinedSource.slice(moduleStart,moduleEnd);
+vm.runInContext(moduleSource,context);const run=s=>vm.runInContext(s,context);
+const item=(kind,x=50,y=55)=>({kind,x,y,vx:0,vy:0,age:0,el:node()});
+context.startNetGame();assert.equal(run('riverNetHP'),3);assert.equal(run('riverNetGoal'),10);assert.equal(context.riverFloating.filter(i=>i.kind==='fish').length,2);assert.equal(context.riverFloating.filter(i=>i.kind==='trash').length,3);
+context.riverFloating=[item('fish')];context.updateNetGame(0);assert.equal(run('riverNetHP'),2);assert.equal(context.riverNetCaught,0);
+context.paused=true;context.riverFloating=[item('fish')];context.updateNetGame(0);assert.equal(run('riverNetHP'),2);context.paused=false;
+context.updateNetGame(0);context.riverFloating=[item('fish')];context.updateNetGame(0);assert.equal(context.lost,'hp');assert.equal(run('riverNetHP'),0);
+context.startNetGame();context.riverNetCaught=9;context.riverFloating=[item('trash'),item('trash')];context.updateNetGame(0);assert.equal(context.riverNetCaught,10);assert.equal(context.won,true);
+context.startNetGame();context.riverFloating=[item('fish',113)];context.updateNetGame(0);assert.equal(context.riverTime,100);context.riverFloating=[item('trash',113)];context.updateNetGame(0);assert.equal(context.riverTime,97);assert.equal(context.riverFloating.filter(i=>i.kind==='trash').length,3);
+context.movementKeys.add('w');context.updateNetGame(.05);assert.ok(run('riverNetY')<55);context.movementKeys.clear();context.movementKeys.add('d');context.updateNetGame(.05);assert.ok(context.riverNetX>50);context.movementKeys.clear();
+context.aimRiverNet({clientX:900,clientY:500});const before=context.riverNetX;context.updateNetGame(.05);assert.ok(context.riverNetX>before&&context.riverNetX<90);
+context.startNetGame();assert.equal(run('riverNetHP'),3);assert.equal(context.riverNetCaught,0);
+console.log('PASS: 3 HP reset, fish penalty, pause, zero-HP result, exact 10-trash goal, fish escape, trash penalty/replacement, free keyboard movement, smooth pointer movement.');

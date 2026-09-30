@@ -1,0 +1,48 @@
+const fs = require('node:fs');
+const assert = require('node:assert/strict');
+
+const game = fs.readFileSync('game.js', 'utf8');
+const html = fs.readFileSync('index.html', 'utf8');
+const styles = fs.readFileSync('styles.css', 'utf8');
+const ui = fs.readFileSync('ui.css', 'utf8');
+
+assert.match(game, /riverTime=150/);
+assert.match(html, /id="river-timer">02:30</);
+assert.ok(fs.existsSync('assets/level2/river-entrance.png'));
+assert.match(html, /id="river-entrance"[\s\S]*id="river-entrance-npc"[\s\S]*id="river-npc-dialog"/);
+assert.match(html, /id="river-dialog" class="opening-dialog awaiting-dialog-tap"/);
+assert.match(html, /id="river-entry-loading"/);
+assert.match(html, /id="river-cleanliness-bar"[^>]*max="100"[^>]*value="0"/);
+assert.match(game, /const riverEntranceIntroLines/);
+assert.match(game, /function interactRiverEntrance\(\)/);
+assert.match(game, /function enterRiverFromGate\(\)/);
+assert.match(game, /riverDialogMode='mission-intro'/);
+const riverStartBlock=game.slice(game.indexOf('function startLevelTwo()'),game.indexOf('async function showRiverDialogLine'));
+assert.doesNotMatch(riverStartBlock,/createRiverShoreTrash\(\)/);
+assert.match(game, /async function beginRiverGameplay\(\)[\s\S]*createRiverShoreTrash\(\)/);
+assert.match(game, /function updateRiverProgress\(\)[\s\S]*completed\/23\*100/);
+assert.match(game, /function addRiverCleanReveal\(/);
+assert.match(styles, /river-entrance\.png/);
+assert.match(styles, /\.river-clean-reveal>i\{[\s\S]*river-clean\.png/);
+assert.equal((game.slice(game.indexOf('const riverShoreTrashItems'), game.indexOf('function createRiverShoreTrash')).match(/\['(?:organic|paper|inorganic)'/g) || []).length, 7);
+for (const type of ['organic','paper','inorganic']) assert.match(html, new RegExp(`class="sorting-bin river-bin ${type}"`));
+assert.match(game, /function interactRiver\(action='pickup'\)/);
+assert.match(game, /key==='f'&&\(levelOneGameplay\|\|riverGameplay\|\|forestGameplay\|\|factoryGameplay\)/);
+assert.match(game, /riverTime=Math\.max\(0,riverTime-5\)/);
+assert.match(game, /const riverNetGoal=10/);
+assert.match(game, /let riverNetY=55,riverNetHP=3/);
+assert.match(game, /movementKeys\.has\('w'\)/);
+assert.match(game, /if\(riverNetHP===0\).*riverGameOver\('hp'\)/);
+const clogBlock = game.slice(game.indexOf('const clogAssets'), game.indexOf('function startClogGame'));
+assert.equal((clogBlock.match(/'clog-[^']+\.png'/g) || []).length, 6);
+assert.match(game, /function riverGameOver\(reason='time'\)\{finishRiverLevel\(reason\)\}/);
+const riverFinish=game.slice(game.indexOf("function finishRiverLevel(reason='complete')"),game.indexOf('function riverGameOver'));
+assert.doesNotMatch(riverFinish,/completeLevel\(2\)/);
+assert.match(riverFinish,/riverDialogMode='closing'/);
+assert.match(game,/beginReturnToNpc\(2\)/);
+assert.match(styles, /\.river-world\.partial \.river-clean-background\{opacity:\.48\}/);
+assert.match(styles, /\.river-camera\{[^}]*width:175%;height:175%/);
+assert.match(ui, /\.settings-modal>\.settings-card\{[\s\S]*overflow:hidden/);
+assert.match(ui, /\.info-panel>\.credits-card\{[\s\S]*overflow:hidden/);
+
+console.log('PASS: Level 2 flow, sorting, net HP, ten-trash target, clog cleanup, outcomes, camera, and modal overflow fixes.');

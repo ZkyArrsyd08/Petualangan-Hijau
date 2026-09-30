@@ -1,0 +1,250 @@
+﻿[
+    {
+        "file":  "pollution_smokestack.png",
+        "x":  14,
+        "y":  465,
+        "width":  128,
+        "height":  125,
+        "transparent":  false
+    },
+    {
+        "file":  "pollution_waste_pipe.png",
+        "x":  157,
+        "y":  467,
+        "width":  140,
+        "height":  123,
+        "transparent":  false
+    },
+    {
+        "file":  "pollution_waste_pile.png",
+        "x":  312,
+        "y":  467,
+        "width":  158,
+        "height":  123,
+        "transparent":  false
+    },
+    {
+        "file":  "factory_filter_machine.png",
+        "x":  494,
+        "y":  468,
+        "width":  169,
+        "height":  122,
+        "transparent":  false
+    },
+    {
+        "file":  "filter_component_a.png",
+        "x":  677,
+        "y":  468,
+        "width":  106,
+        "height":  122,
+        "transparent":  false
+    },
+    {
+        "file":  "filter_component_b.png",
+        "x":  797,
+        "y":  468,
+        "width":  101,
+        "height":  122,
+        "transparent":  false
+    },
+    {
+        "file":  "filter_component_c.png",
+        "x":  913,
+        "y":  468,
+        "width":  109,
+        "height":  122,
+        "transparent":  false
+    },
+    {
+        "file":  "waste_valve_closed.png",
+        "x":  1042,
+        "y":  468,
+        "width":  122,
+        "height":  122,
+        "transparent":  false
+    },
+    {
+        "file":  "waste_valve_open.png",
+        "x":  1179,
+        "y":  468,
+        "width":  121,
+        "height":  122,
+        "transparent":  false
+    },
+    {
+        "file":  "industrial_waste_container.png",
+        "x":  14,
+        "y":  686,
+        "width":  166,
+        "height":  102,
+        "transparent":  false
+    },
+    {
+        "file":  "industrial_waste_barrel.png",
+        "x":  194,
+        "y":  683,
+        "width":  128,
+        "height":  105,
+        "transparent":  false
+    },
+    {
+        "file":  "industrial_waste_box.png",
+        "x":  337,
+        "y":  685,
+        "width":  132,
+        "height":  103,
+        "transparent":  false
+    },
+    {
+        "file":  "factory_scrap_metal.png",
+        "x":  496,
+        "y":  686,
+        "width":  127,
+        "height":  102,
+        "transparent":  false
+    },
+    {
+        "file":  "factory_pipe_scrap.png",
+        "x":  637,
+        "y":  687,
+        "width":  150,
+        "height":  101,
+        "transparent":  false
+    },
+    {
+        "file":  "factory_oil_container.png",
+        "x":  802,
+        "y":  686,
+        "width":  148,
+        "height":  102,
+        "transparent":  false
+    },
+    {
+        "file":  "factory_plastic_waste.png",
+        "x":  966,
+        "y":  686,
+        "width":  153,
+        "height":  102,
+        "transparent":  false
+    },
+    {
+        "file":  "factory_waste_bundle.png",
+        "x":  1134,
+        "y":  686,
+        "width":  165,
+        "height":  102,
+        "transparent":  false
+    },
+    {
+        "file":  "fx_factory_smoke.png",
+        "x":  14,
+        "y":  880,
+        "width":  114,
+        "height":  107,
+        "transparent":  false
+    },
+    {
+        "file":  "fx_factory_smoke_clean.png",
+        "x":  143,
+        "y":  880,
+        "width":  114,
+        "height":  107,
+        "transparent":  false
+    },
+    {
+        "file":  "fx_waste_water.png",
+        "x":  272,
+        "y":  880,
+        "width":  126,
+        "height":  107,
+        "transparent":  false
+    },
+    {
+        "file":  "fx_clean_water_flow.png",
+        "x":  414,
+        "y":  880,
+        "width":  136,
+        "height":  107,
+        "transparent":  false
+    },
+    {
+        "file":  "factory_machine_large.png",
+        "x":  577,
+        "y":  880,
+        "width":  126,
+        "height":  107,
+        "transparent":  false
+    },
+    {
+        "file":  "factory_pipe_large.png",
+        "x":  719,
+        "y":  882,
+        "width":  125,
+        "height":  105,
+        "transparent":  false
+    },
+    {
+        "file":  "factory_warning_sign.png",
+        "x":  860,
+        "y":  882,
+        "width":  125,
+        "height":  105,
+        "transparent":  false
+    },
+    {
+        "file":  "factory_crate.png",
+        "x":  1002,
+        "y":  884,
+        "width":  122,
+        "height":  103,
+        "transparent":  false
+    },
+    {
+        "file":  "factory_conveyor.png",
+        "x":  1140,
+        "y":  884,
+        "width":  160,
+        "height":  103,
+        "transparent":  false
+    },
+    {
+        "file":  "factory_green_area.png",
+        "x":  14,
+        "y":  1075,
+        "width":  181,
+        "height":  108,
+        "transparent":  false
+    },
+    {
+        "file":  "factory_clean_marker.png",
+        "x":  212,
+        "y":  1075,
+        "width":  195,
+        "height":  108,
+        "transparent":  false
+    },
+    {
+        "file":  "mc_check_machine.png",
+        "x":  435,
+        "y":  1074,
+        "width":  153,
+        "height":  109,
+        "transparent":  false
+    },
+    {
+        "file":  "mc_fix_machine.png",
+        "x":  603,
+        "y":  1075,
+        "width":  159,
+        "height":  108,
+        "transparent":  false
+    },
+    {
+        "file":  "mc_move_waste.png",
+        "x":  778,
+        "y":  1075,
+        "width":  184,
+        "height":  108,
+        "transparent":  false
+    }
+]

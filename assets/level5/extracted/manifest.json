@@ -1,0 +1,322 @@
+﻿[
+    {
+        "file":  "bg_kota_kotor.png",
+        "x":  9,
+        "y":  111,
+        "width":  643,
+        "height":  270,
+        "transparent":  false
+    },
+    {
+        "file":  "bg_kota_bersih.png",
+        "x":  663,
+        "y":  112,
+        "width":  640,
+        "height":  269,
+        "transparent":  false
+    },
+    {
+        "file":  "city_trash_plastic.png",
+        "x":  16,
+        "y":  471,
+        "width":  96,
+        "height":  86,
+        "transparent":  false
+    },
+    {
+        "file":  "city_trash_bottle.png",
+        "x":  127,
+        "y":  474,
+        "width":  104,
+        "height":  83,
+        "transparent":  false
+    },
+    {
+        "file":  "city_trash_food_wrapper.png",
+        "x":  243,
+        "y":  480,
+        "width":  110,
+        "height":  77,
+        "transparent":  false
+    },
+    {
+        "file":  "city_trash_can.png",
+        "x":  367,
+        "y":  475,
+        "width":  101,
+        "height":  82,
+        "transparent":  false
+    },
+    {
+        "file":  "city_trash_paper.png",
+        "x":  482,
+        "y":  475,
+        "width":  102,
+        "height":  82,
+        "transparent":  false
+    },
+    {
+        "file":  "city_drain_blocked.png",
+        "x":  610,
+        "y":  465,
+        "width":  124,
+        "height":  92,
+        "transparent":  false
+    },
+    {
+        "file":  "drain_plastic.png",
+        "x":  748,
+        "y":  474,
+        "width":  87,
+        "height":  83,
+        "transparent":  false
+    },
+    {
+        "file":  "drain_bottle.png",
+        "x":  850,
+        "y":  475,
+        "width":  85,
+        "height":  82,
+        "transparent":  false
+    },
+    {
+        "file":  "drain_leaves.png",
+        "x":  950,
+        "y":  475,
+        "width":  92,
+        "height":  82,
+        "transparent":  false
+    },
+    {
+        "file":  "drain_mud.png",
+        "x":  1056,
+        "y":  475,
+        "width":  94,
+        "height":  82,
+        "transparent":  false
+    },
+    {
+        "file":  "drain_debris_bundle.png",
+        "x":  1170,
+        "y":  465,
+        "width":  125,
+        "height":  92,
+        "transparent":  false
+    },
+    {
+        "file":  "city_car_smoke.png",
+        "x":  17,
+        "y":  644,
+        "width":  153,
+        "height":  102,
+        "transparent":  false
+    },
+    {
+        "file":  "city_burning_trash.png",
+        "x":  182,
+        "y":  644,
+        "width":  115,
+        "height":  102,
+        "transparent":  false
+    },
+    {
+        "file":  "city_dirty_machine.png",
+        "x":  311,
+        "y":  644,
+        "width":  113,
+        "height":  102,
+        "transparent":  false
+    },
+    {
+        "file":  "city_pollution_marker.png",
+        "x":  441,
+        "y":  644,
+        "width":  158,
+        "height":  102,
+        "transparent":  false
+    },
+    {
+        "file":  "city_dead_tree.png",
+        "x":  626,
+        "y":  646,
+        "width":  109,
+        "height":  100,
+        "transparent":  false
+    },
+    {
+        "file":  "city_empty_park.png",
+        "x":  750,
+        "y":  651,
+        "width":  161,
+        "height":  95,
+        "transparent":  false
+    },
+    {
+        "file":  "city_planting_spot.png",
+        "x":  928,
+        "y":  657,
+        "width":  111,
+        "height":  89,
+        "transparent":  false
+    },
+    {
+        "file":  "city_tree_seedling.png",
+        "x":  1054,
+        "y":  648,
+        "width":  114,
+        "height":  98,
+        "transparent":  false
+    },
+    {
+        "file":  "city_tree_restored.png",
+        "x":  1181,
+        "y":  641,
+        "width":  115,
+        "height":  105,
+        "transparent":  false
+    },
+    {
+        "file":  "city_building_small.png",
+        "x":  17,
+        "y":  837,
+        "width":  124,
+        "height":  90,
+        "transparent":  false
+    },
+    {
+        "file":  "city_car.png",
+        "x":  153,
+        "y":  839,
+        "width":  121,
+        "height":  88,
+        "transparent":  false
+    },
+    {
+        "file":  "city_bus.png",
+        "x":  286,
+        "y":  832,
+        "width":  148,
+        "height":  95,
+        "transparent":  false
+    },
+    {
+        "file":  "city_street_light.png",
+        "x":  450,
+        "y":  835,
+        "width":  106,
+        "height":  92,
+        "transparent":  false
+    },
+    {
+        "file":  "city_bench.png",
+        "x":  571,
+        "y":  838,
+        "width":  139,
+        "height":  89,
+        "transparent":  false
+    },
+    {
+        "file":  "city_billboard.png",
+        "x":  727,
+        "y":  823,
+        "width":  163,
+        "height":  104,
+        "transparent":  false
+    },
+    {
+        "file":  "city_traffic_sign.png",
+        "x":  906,
+        "y":  839,
+        "width":  116,
+        "height":  88,
+        "transparent":  false
+    },
+    {
+        "file":  "city_recycling_bins.png",
+        "x":  1046,
+        "y":  815,
+        "width":  250,
+        "height":  112,
+        "transparent":  false
+    },
+    {
+        "file":  "fx_city_clean_transition.png",
+        "x":  17,
+        "y":  1019,
+        "width":  103,
+        "height":  118,
+        "transparent":  false
+    },
+    {
+        "file":  "fx_clean_air.png",
+        "x":  132,
+        "y":  1024,
+        "width":  144,
+        "height":  113,
+        "transparent":  false
+    },
+    {
+        "file":  "fx_green_growth.png",
+        "x":  291,
+        "y":  1022,
+        "width":  119,
+        "height":  115,
+        "transparent":  false
+    },
+    {
+        "file":  "fx_water_restore.png",
+        "x":  428,
+        "y":  1023,
+        "width":  119,
+        "height":  114,
+        "transparent":  false
+    },
+    {
+        "file":  "city_bird.png",
+        "x":  572,
+        "y":  1033,
+        "width":  104,
+        "height":  104,
+        "transparent":  false
+    },
+    {
+        "file":  "city_people_happy.png",
+        "x":  692,
+        "y":  1016,
+        "width":  104,
+        "height":  121,
+        "transparent":  false
+    },
+    {
+        "file":  "city_children_playing.png",
+        "x":  813,
+        "y":  1027,
+        "width":  108,
+        "height":  110,
+        "transparent":  false
+    },
+    {
+        "file":  "mc_clean_city.png",
+        "x":  949,
+        "y":  1026,
+        "width":  102,
+        "height":  111,
+        "transparent":  false
+    },
+    {
+        "file":  "mc_fix_drain.png",
+        "x":  1064,
+        "y":  1031,
+        "width":  105,
+        "height":  106,
+        "transparent":  false
+    },
+    {
+        "file":  "mc_plant_city_tree.png",
+        "x":  1188,
+        "y":  1028,
+        "width":  110,
+        "height":  109,
+        "transparent":  false
+    }
+]

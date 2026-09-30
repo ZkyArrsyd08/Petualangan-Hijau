@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <link rel="preload" as="image" href="assets/startup/splash_vitalcode.png" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/startup/loading_petualangan_hijau.png" fetchpriority="high">
+  <title>Petualangan Hijau</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="ui.css">
+</head>
+<body>
+  <div id="startup-overlay" class="startup-overlay" data-state="splash" aria-hidden="true">
+    <div id="startup-splash" class="startup-scene startup-splash">
+      <img id="startup-vitalcode-image" src="assets/startup/splash_vitalcode.png" alt="" fetchpriority="high">
+    </div>
+    <div id="startup-loading" class="startup-scene startup-loading">
+      <img id="startup-game-image" src="assets/startup/loading_petualangan_hijau.png" alt="" fetchpriority="high">
+      <div class="startup-loading-indicator" role="status" aria-live="polite">
+        <p id="startup-loading-status">Memuat...</p>
+        <div class="startup-loading-track" aria-hidden="true"><div id="startup-loading-fill"></div></div>
+        <small id="startup-loading-percent">0%</small>
+      </div>
+    </div>
+  </div>
+  <main id="game" aria-live="polite">
+    <section id="menu" class="screen">
+      <video id="menu-video" muted loop playsinline preload="auto">
+        <source src="assets/video/menu-background.mp4" type="video/mp4">
+      </video>
+      <div class="menu-shade"></div>
+      <div class="menu-content">
+        <img class="game-logo" src="assets/ui/title.png" alt="Petualangan Hijau">
+        <div class="menu-actions">
+          <button id="start-button" class="image-button large" aria-label="Mulai permainan">
+            <img src="assets/ui/start.png" alt="Start">
+          </button>
+          <button id="load-button" class="image-button large" aria-label="Load game"><img src="assets/ui/load.png" alt="Load"></button>
+        </div>
+      </div>
+      <button id="settings-button" class="image-button round settings-button" aria-label="Buka pengaturan"><img src="assets/ui/settings.png" alt="Pengaturan"></button>
+      <button id="info-button" class="image-button menu-info-button" aria-label="Buka credits"><img src="assets/ui/info-icon.jpeg" alt="Credits"></button>
+    </section>
+
+    <div id="new-game-modal" class="new-game-modal" hidden>
+      <div class="new-game-panel">
+        <div id="new-game-confirm">
+          <h2 id="new-game-question">Main game baru?</h2>
+          <p>Petualangan baru akan dimulai dari prolog.</p>
+          <div><button id="new-game-ok">OKE</button><button id="new-game-cancel">BATAL</button></div>
+        </div>
+        <form id="name-form" hidden>
+          <h2>Siapa nama kamu?</h2>
+          <p>Nama ini akan tampil pada papan nama karakter.</p>
+          <input id="player-name-input" maxlength="16" autocomplete="off" placeholder="Masukkan nama" required>
+          <button type="submit">MULAI</button>
+        </form>
+      </div>
+    </div>
+
+    <section id="prologue" class="screen" aria-label="Prolog">
+      <div id="scene-image" class="scene-image"></div>
+      <div class="scene-vignette"></div>
+      <div id="narration-wrap" class="narration-wrap">
+        <p id="narration"></p>
+      </div>
+      <p id="tap-hint" class="tap-hint">TAP UNTUK MEMPERCEPAT</p>
+      <button id="prologue-skip" class="prologue-skip" type="button">SKIP PROLOG</button>
+    </section>
+
+    <section id="title-card" class="screen title-card">
+      <img src="assets/ui/title.png" alt="Petualangan Hijau">
+    </section>
+
+    <section id="loading" class="screen loading-screen">
+      <div class="loading-content">
+        <img src="assets/ui/title.png" alt="Petualangan Hijau">
+        <div class="loading-track"><div id="loading-bar"></div></div>
+        <p id="loading-text">Memuat perjalanan...</p>
+      </div>
+    </section>
+
+    <section id="map" class="screen map-screen">
+      <div class="map-backdrop"></div>
+      <svg class="level-route" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <path class="route-glow" d="M13 19 C21 20 23 37 31 40 S42 34 50 32 S70 23 82 28 S82 53 77 70"/>
+        <path class="route-line route-segment" data-to-level="2" d="M13 19 C19 20 23 38 30 40"/>
+        <path class="route-line route-segment" data-to-level="3" d="M30 40 C38 40 43 32 51 32"/>
+        <path class="route-line route-segment" data-to-level="4" d="M51 32 C65 25 72 23 82 28"/>
+        <path class="route-line route-segment" data-to-level="5" d="M82 28 C92 32 84 53 77 70"/>
+      </svg>
+      <div class="level-buttons" aria-label="Pilih level">
+        <button class="level-button level-1" data-level="1" aria-label="Level 1 Taman"><img src="assets/ui/levels/level-1.png" alt="Level 1 Taman"></button>
+        <button class="level-button level-2" data-level="2" aria-label="Level 2 Sungai"><img src="assets/ui/levels/level-2.png" alt="Level 2 Sungai"></button>
+        <button class="level-button level-3" data-level="3" aria-label="Level 3 Hutan"><img src="assets/ui/levels/level-3.png" alt="Level 3 Hutan"></button>
+        <button class="level-button level-4" data-level="4" aria-label="Level 4 Pabrik"><img src="assets/ui/levels/level-4.png" alt="Level 4 Pabrik"></button>
+        <button class="level-button level-5" data-level="5" aria-label="Level 5 Kota"><img src="assets/ui/levels/level-5.png" alt="Level 5 Kota"></button>
+      </div>
+      <div id="save-toast" class="save-toast">Perjalanan tersimpan</div>
+      <div id="level-template" aria-hidden="true"></div>
+    </section>
+    <section id="level-1-screen" class="screen level-one" aria-label="Level 1 Taman">
+      <div id="park-entrance" class="park-entrance" aria-label="Area depan taman">
+        <div class="park-entrance-background" aria-hidden="true"></div>
+        <div id="entrance-gate" class="entrance-gate" aria-hidden="true"><i></i><i></i></div>
+        <div id="entrance-player" class="park-player entrance-player"><img id="entrance-player-sprite" src="assets/player-motions/up/idle.png" alt="Karakter pemain"></div>
+        <div id="entrance-prompt" class="entrance-prompt"><kbd>E</kbd><span>BICARA DENGAN PAK RUDI</span></div>
+        <div class="touch-controls entrance-touch" aria-label="Kontrol sentuh area depan taman"><button data-key="w">▲</button><button data-key="a">◀</button><button data-key="s">▼</button><button data-key="d">▶</button><button id="entrance-interact" aria-label="Interaksi">E</button></div>
+        <div id="pak-rudi-dialog" class="pak-rudi-dialog" role="dialog" aria-modal="true" aria-labelledby="pak-rudi-name" hidden>
+          <img id="pak-rudi-dialog-portrait" class="pak-rudi-portrait" src="assets/level1/npc/pak-rudi-present.png" alt="Pak Rudi" draggable="false">
+          <div class="dialog-box"><div class="dialog-nameplate"><img src="assets/level1/ui/nameplate.png" alt=""><strong id="pak-rudi-name">Pak Rudi</strong></div><img src="assets/level1/ui/dialog.png" alt=""><p id="pak-rudi-text"></p><small id="pak-rudi-hint">TAP UNTUK LANJUT</small></div>
+        </div>
+        <div id="entrance-fade" class="entrance-fade" aria-hidden="true"></div>
+      </div>
+      <div class="park-world" id="park-world">
+        <div id="park-camera" class="park-camera">
+          <div class="park-background"></div>
+          <div id="park-clean-reveal" class="park-clean-reveal" aria-hidden="true"></div>
+          <div class="park-clean-background"></div>
+          <div id="collision-debug" class="collision-debug" aria-hidden="true"></div>
+          <div id="trash-layer"></div>
+          <div class="sorting-bins">
+            <div class="sorting-bin organic" data-type="organic" data-x="24" data-y="49"><img src="assets/level1/new/bins/organic.png" alt="Tempat sampah organik"><span>ORGANIK</span></div>
+            <div class="sorting-bin paper" data-type="paper" data-x="31" data-y="82"><img src="assets/level1/new/bins/paper.png" alt="Tempat sampah kertas"><span>KERTAS</span></div>
+            <div class="sorting-bin inorganic" data-type="inorganic" data-x="69" data-y="64"><img src="assets/level1/new/bins/inorganic.png" alt="Tempat sampah anorganik"><span>ANORGANIK</span></div>
+          </div>
+          <div id="park-player" class="park-player">
+            <img id="player-sprite" src="assets/player-motions/down/idle.png" alt="Karakter pemain">
+            <b id="carried-icon"></b>
+          </div>
+          <div id="interaction-prompt" class="interaction-prompt"><img src="assets/level1/new/ui/interact-e.png" alt="Tombol E"><kbd id="interaction-key" hidden>F</kbd><span>AMBIL</span></div>
+        </div>
+      </div>
+      <div class="level-hud"><img src="assets/level1/ui/hud.png" alt=""><div><strong>KEBERSIHAN TAMAN</strong><span id="clean-progress">0% · 0/10 Sampah</span><progress id="park-cleanliness-bar" max="100" value="0">0%</progress></div></div>
+      <div id="timer-hud" class="timer-hud"><strong>WAKTU</strong><span id="level-timer">02:30</span></div>
+      <div id="carry-hud" class="carry-hud" hidden><strong>DIBAWA</strong><span id="carry-name">—</span></div>
+      <div id="level-feedback" class="level-feedback"></div>
+      <div id="park-entry-loading" class="park-entry-loading" hidden><div><span>MEMASUKI TAMAN</span><div><i></i></div><small>Menyiapkan area...</small></div></div>
+      <div id="repair-hold" class="repair-hold" hidden><div id="repair-hold-fill"></div><span><img src="assets/level1/new/ui/interact-e.png" alt="Tombol E"> TAHAN UNTUK MEMPERBAIKI</span></div>
+      <div class="touch-controls" aria-label="Kontrol sentuh">
+        <button data-key="w">▲</button><button data-key="a">◀</button><button data-key="s">▼</button><button data-key="d">▶</button><button id="touch-interact" aria-label="Interaksi"><img src="assets/level1/new/ui/interact-e.png" alt=""></button>
+      </div>
+      <div id="opening-dialog" class="opening-dialog hidden">
+        <p id="opening-tap-hint" class="opening-tap-hint">TAP UNTUK MELANJUTKAN</p>
+        <img id="dialog-character" src="assets/level1/characters/pose-1.png" alt="Karakter utama">
+        <div class="dialog-box"><div class="dialog-nameplate"><img src="assets/level1/ui/nameplate.png" alt=""><strong id="dialog-player-name">Pemain</strong></div><img src="assets/level1/ui/dialog.png" alt=""><p id="dialog-text"></p><small>TAP UNTUK LANJUT</small></div>
+      </div>
+      <div id="level-ready" class="level-ready" hidden>
+        <div>
+          <span>LEVEL 1 · TAMAN</span>
+          <h2>Bersihkan Taman!</h2>
+          <p>Kumpulkan 10 sampah, pilah dengan benar, lalu perbaiki fasilitas sebelum waktu 2 menit 30 detik habis.</p>
+          <ul><li>Gerak dengan W-A-S-D.</li><li>Tekan E untuk mengambil, F untuk membuang.</li><li>Tahan E selama 5 detik untuk memperbaiki fasilitas.</li><li>Salah memilah mengurangi waktu 5 detik.</li></ul>
+          <div class="ready-actions"><button id="level-ready-start">SIAP</button><button id="level-ready-back">BELUM SIAP</button></div>
+        </div>
+      </div>
+      <div id="level-countdown" class="level-countdown" hidden><strong>3</strong></div>
+      <div id="level-complete" class="level-complete" hidden>
+        <div><h2>LEVEL 1 SELESAI!</h2><h3 id="level-result-title">HASIL PEMULIHAN TAMAN</h3><p id="level-result-copy">Satu langkah kecil untuk lingkungan yang lebih baik.</p><div class="result-stats"><span>Kebersihan <b id="level-result-cleanliness">0%</b></span><span>Sampah Dipilah <b id="level-result-trash">0 / 10</b></span><span>Fasilitas Diperbaiki <b id="level-result-repairs">0 / 3</b></span><span>Sisa Waktu <b id="result-time">00:00</b></span></div><button id="continue-level">LANJUT</button></div>
+      </div>
+      <div id="game-over" class="level-complete game-over" hidden>
+        <div><h2>WAKTU HABIS!</h2><h3>Taman belum berhasil dibersihkan.</h3><div class="result-stats"><span>Sampah Dibersihkan <b id="failed-progress">0 / 10</b></span></div><p>Menjaga lingkungan membutuhkan ketelitian dan tindakan yang tepat.</p><button id="retry-level">COBA LAGI</button><button id="choose-level">PILIH LEVEL</button></div>
+      </div>
+    </section>
+    <section id="level-2-screen" class="screen level-two intro-mode" aria-label="Level 2 Sungai">
+      <div id="river-entrance" class="river-entrance" aria-label="Area depan sungai">
+        <div class="river-entrance-background" aria-hidden="true"></div>
+        <div id="river-entrance-npc" class="river-entrance-npc" aria-label="Pak Rudi"><span>!</span></div>
+        <div id="river-entrance-gate" class="river-entrance-gate" aria-hidden="true"></div>
+        <div id="river-entrance-player" class="park-player river-entrance-player"><img id="river-entrance-player-sprite" src="assets/player-motions/up/idle.png" alt="Karakter pemain"></div>
+        <div id="river-entrance-prompt" class="entrance-prompt river-entrance-prompt"><kbd>E</kbd><span>BICARA DENGAN PAK RUDI</span></div>
+        <div class="touch-controls river-entrance-touch" aria-label="Kontrol sentuh area depan sungai"><button data-key="w">▲</button><button data-key="a">◀</button><button data-key="s">▼</button><button data-key="d">▶</button><button id="river-entrance-interact" aria-label="Interaksi">E</button></div>
+        <div id="river-npc-dialog" class="pak-rudi-dialog" role="dialog" aria-modal="true" aria-labelledby="river-npc-name" hidden>
+          <img id="river-npc-dialog-portrait" class="pak-rudi-portrait" src="assets/level1/npc/pak-rudi-present.png" alt="Pak Rudi" draggable="false">
+          <div class="dialog-box"><div class="dialog-nameplate"><img src="assets/level1/ui/nameplate.png" alt=""><strong id="river-npc-name">Pak Rudi</strong></div><img src="assets/level1/ui/dialog.png" alt=""><p id="river-npc-text"></p><small>TAP UNTUK LANJUT</small></div>
+        </div>
+        <div class="entrance-fade" aria-hidden="true"></div>
+      </div>
+      <div id="river-world" class="river-world">
+        <div id="river-camera" class="river-camera overview">
+          <div class="river-background"></div><div id="river-clean-reveal" class="river-clean-reveal" aria-hidden="true"></div><div class="river-clean-background"></div>
+          <div id="river-sorting-bins" class="sorting-bins river-sorting-bins">
+            <div class="sorting-bin river-bin organic" data-type="organic" data-x="15" data-y="86" style="left:15%;top:86%"><img src="assets/level1/new/bins/organic.png" alt="Tempat sampah organik"><span>ORGANIK</span></div>
+            <div class="sorting-bin river-bin paper" data-type="paper" data-x="35" data-y="92" style="left:35%;top:92%"><img src="assets/level1/new/bins/paper.png" alt="Tempat sampah kertas"><span>KERTAS</span></div>
+            <div class="sorting-bin river-bin inorganic" data-type="inorganic" data-x="58" data-y="94" style="left:58%;top:94%"><img src="assets/level1/new/bins/inorganic.png" alt="Tempat sampah anorganik"><span>ANORGANIK</span></div>
+          </div>
+          <div id="river-shore-trash"></div>
+          <div id="river-stage-point" class="river-stage-point" hidden></div>
+          <div id="river-player" class="river-player park-player"><img src="assets/player-motions/down/idle.png" alt="Karakter pemain"><b id="river-carried-icon"></b></div>
+          <div id="river-interact" class="river-interact">[E] BERSIHKAN</div>
+        </div>
+      </div>
+      <div class="river-hud"><strong>PEMULIHAN SUNGAI</strong><span id="river-clean-progress">0%</span><progress id="river-cleanliness-bar" class="objective-bar" max="100" value="0">0%</progress><b id="river-progress">0 / 3 Tahap</b><b id="river-subprogress">PILAH SAMPAH · 0 / 7</b></div>
+      <div class="river-timer"><strong>WAKTU</strong><span id="river-timer">02:30</span></div>
+      <div id="river-carry-hud" class="carry-hud river-carry-hud" hidden><strong>DIBAWA</strong><span id="river-carry-name">—</span></div>
+      <div id="river-entry-loading" class="park-entry-loading" hidden><div><span>MEMASUKI AREA SUNGAI</span><div><i></i></div><small>Menyiapkan aliran...</small></div></div>
+      <div id="river-dialog" class="opening-dialog awaiting-dialog-tap">
+        <p class="opening-tap-hint">TAP UNTUK MELANJUTKAN</p>
+        <img id="river-dialog-character" src="assets/level1/characters/pose-1.png" alt="Karakter utama">
+        <div class="dialog-box"><div class="dialog-nameplate"><img src="assets/level1/ui/nameplate.png" alt=""><strong id="river-player-name">Pemain</strong></div><img src="assets/level1/ui/dialog.png" alt=""><p id="river-dialog-text"></p><small>TAP UNTUK LANJUT</small></div>
+      </div>
+      <div id="river-ready" class="level-ready" hidden><div><span>LEVEL 2 · SUNGAI</span><h2>Pulihkan Sungai!</h2><p>Pilah 7 sampah, tangkap 10 sampah mengambang tanpa mengenai ikan, lalu angkat 6 sumbatan sebelum 2 menit 30 detik habis.</p><div class="ready-actions"><button id="river-ready-start">SIAP</button><button id="river-ready-back">BELUM SIAP</button></div></div></div>
+      <div id="river-countdown" class="level-countdown" hidden><strong>3</strong></div>
+      <div class="touch-controls river-touch" aria-label="Kontrol sentuh Sungai"><button data-key="w">▲</button><button data-key="a">◀</button><button data-key="s">▼</button><button data-key="d">▶</button><button id="river-touch-interact">E</button></div>
+      <div id="river-net-game" class="river-minigame net-game" hidden><div class="mini-hud">SAMPAH TERTANGKAP <b id="net-progress">0 / 10</b></div><div class="net-health">HP <b id="net-hp" aria-label="3 dari 3 HP">♥♥♥</b><small>🐟 Jangan tangkap ikan · −1 HP</small></div><span id="river-mini-time" class="river-mini-time">02:30</span><div id="net-stream"></div><div id="river-net" aria-label="Jaring penangkap">🥅</div><p>WASD / TOMBOL ARAH · SENTUH / GESER KE SEGALA ARAH<br>TANGKAP 10 SAMPAH · HINDARI IKAN</p></div>
+      <div id="river-inspection" class="river-inspection" hidden><div><strong id="river-inspection-name">Pemain</strong><p id="river-inspection-text"></p><small>TAP UNTUK LANJUT</small></div></div>
+      <div id="river-clog-game" class="river-minigame clog-game" hidden><div class="mini-hud">SUMBATAN <b id="clog-progress">0 / 6</b></div><span id="river-clog-time" class="river-mini-time">02:30</span><div id="clog-items"></div><div id="clog-drop-zone">AREA PEMBUANGAN</div><p>DRAG SEMUA SAMPAH KE AREA PEMBUANGAN</p></div>
+      <div id="river-game-over" class="level-complete game-over" hidden><div><h2>WAKTU HABIS!</h2><h3>Sungai belum berhasil dipulihkan.</h3><div class="result-stats"><span>Progress Terakhir <b id="river-failed-progress">Tahap 1 · 0 / 5</b></span></div><button id="river-retry">COBA LAGI</button><button id="river-fail-map">PILIH LEVEL</button></div></div>
+      <div id="river-complete" class="level-complete" hidden><div><h2>LEVEL 2 SELESAI!</h2><h3 id="river-result-title">HASIL PEMULIHAN SUNGAI</h3><p id="river-result-copy">Aliran yang bersih menjaga kehidupan di sekitarnya.</p><div class="result-stats"><span>Sampah Dipilah <b id="river-result-shore">0 / 7</b></span><span>Sampah Dijaring <b id="river-result-net">0 / 10</b></span><span>Sumbatan Diangkat <b id="river-result-clog">0 / 6</b></span><span>Sisa Waktu <b id="river-result-time">00:00</b></span></div><button id="river-continue">LANJUT</button></div></div>
+    </section>
+    <section id="level-3-screen" class="screen level-three intro-mode" aria-label="Level 3 Hutan">
+      <div id="forest-entrance" class="forest-entrance" aria-label="Area depan hutan">
+        <div class="forest-entrance-background" aria-hidden="true"></div>
+        <div id="forest-entrance-npc" class="forest-entrance-npc" aria-label="Pak Rudi"><span>!</span></div>
+        <div id="forest-entrance-gate" class="forest-entrance-gate" aria-hidden="true"></div>
+        <div id="forest-entrance-player" class="park-player forest-entrance-player"><img id="forest-entrance-player-sprite" src="assets/player-motions/up/idle.png" alt="Karakter pemain"></div>
+        <div id="forest-entrance-prompt" class="entrance-prompt forest-entrance-prompt"><kbd>E</kbd><span>BICARA DENGAN PAK RUDI</span></div>
+        <div class="touch-controls forest-entrance-touch" aria-label="Kontrol sentuh depan hutan"><button data-key="w">▲</button><button data-key="a">◀</button><button data-key="s">▼</button><button data-key="d">▶</button><button id="forest-entrance-interact">E</button></div>
+        <div id="forest-npc-dialog" class="pak-rudi-dialog" role="dialog" aria-modal="true" aria-labelledby="forest-npc-name" hidden><img id="forest-npc-portrait" class="pak-rudi-portrait" src="assets/level1/npc/pak-rudi-present.png" alt="Pak Rudi"><div class="dialog-box"><div class="dialog-nameplate"><img src="assets/level1/ui/nameplate.png" alt=""><strong id="forest-npc-name">Pak Rudi</strong></div><img src="assets/level1/ui/dialog.png" alt=""><p id="forest-npc-text"></p><small>TAP UNTUK LANJUT</small></div></div>
+        <div class="entrance-fade" aria-hidden="true"></div>
+      </div>
+      <div id="forest-world" class="forest-world" data-stage="wood">
+        <div id="forest-camera" class="environment-camera forest-camera overview">
+          <div class="forest-background forest-bg-wooded"></div><div class="forest-background forest-bg-cleared"></div><div class="forest-background forest-bg-holes"></div><div class="forest-background forest-bg-planted"></div><div class="forest-background forest-bg-restored"></div>
+          <div class="forest-mist"></div><div id="forest-sites" class="forest-sites"></div>
+          <div id="forest-player" class="park-player forest-player"><img id="forest-player-sprite" src="assets/player-motions/down/idle.png" alt="Karakter pemain"></div>
+          <div id="forest-prompt" class="interaction-prompt forest-prompt">[E] AMBIL KAYU</div>
+        </div>
+      </div>
+      <div class="forest-hud"><small id="forest-stage-label">TAHAP 1 / 4</small><strong id="forest-objective">PUNGUT KAYU BERSERAKAN</strong><span id="forest-progress">0 / 6</span><progress id="forest-restoration-bar" class="objective-bar" max="100" value="0">0%</progress></div>
+      <div id="forest-timer-hud" class="timer-hud"><strong>WAKTU</strong><span id="forest-timer">02:30</span></div>
+      <div id="forest-entry-loading" class="park-entry-loading" hidden><div><span>MEMASUKI HUTAN</span><div><i></i></div><small>Menyiapkan area penghijauan...</small></div></div>
+      <div id="plant-hold" class="plant-hold" hidden><div id="plant-hold-fill"></div><span id="forest-hold-label">TAHAN E UNTUK MENGGALI</span></div>
+      <div id="forest-watering-game" class="forest-watering-game" hidden>
+        <div class="forest-watering-panel">
+          <small>MINIGAME PENYIRAMAN</small>
+          <h2>ATUR ALIRAN AIR</h2>
+          <p>Tekan <b>SIRAM SEKARANG</b> saat jarum berada di zona hijau. Tepatkan tiga kali untuk menyiram satu bibit.</p>
+          <div id="forest-watering-visual" class="forest-watering-visual" aria-hidden="true"><img src="assets/level3/new/watering-can-transparent.png" alt=""><i></i></div>
+          <div class="forest-water-gauge"><span></span><i id="forest-water-needle"></i></div>
+          <strong id="forest-water-hits">0 / 3 TEPAT</strong>
+          <p id="forest-water-feedback" class="forest-water-feedback">Tekan saat jarum berada di zona hijau.</p>
+          <div class="forest-water-actions"><button id="forest-water-pour" type="button">SIRAM SEKARANG</button><button id="forest-water-cancel" type="button">BATAL</button></div>
+        </div>
+      </div>
+      <div id="forest-feedback" class="level-feedback"></div>
+      <div class="touch-controls forest-touch" aria-label="Kontrol sentuh Level 3"><button data-forest-key="w">▲</button><button data-forest-key="a">◀</button><button data-forest-key="s">▼</button><button data-forest-key="d">▶</button><button id="forest-touch-interact">E</button></div>
+      <div id="forest-opening" class="opening-dialog forest-dialog awaiting-dialog-tap"><p class="opening-tap-hint">TAP UNTUK MEMULAI DIALOG</p><img id="forest-opening-character" src="assets/level1/characters/pose-1.png" alt="Karakter utama"><div class="dialog-box"><div class="dialog-nameplate"><img src="assets/level1/ui/nameplate.png" alt=""><strong id="forest-opening-name">Pemain</strong></div><img src="assets/level1/ui/dialog.png" alt=""><p id="forest-dialog-text"></p><small>TAP UNTUK LANJUT</small></div></div>
+      <div id="forest-closing" class="opening-dialog forest-dialog hidden"><img id="forest-closing-character" src="assets/level1/characters/pose-1.png" alt="Karakter utama"><div class="dialog-box"><div class="dialog-nameplate"><img src="assets/level1/ui/nameplate.png" alt=""><strong id="forest-closing-name">Pemain</strong></div><img src="assets/level1/ui/dialog.png" alt=""><p id="forest-closing-text"></p><small>TAP UNTUK LANJUT</small></div></div>
+      <div id="forest-ready" class="level-ready" hidden><div><span>LEVEL 3 · HUTAN</span><h2>HIJAUKAN KEMBALI HUTAN</h2><p>Pungut 6 kayu, gali 3 lubang dengan menahan E, tanam 3 bibit, lalu selesaikan minigame penyiraman sebelum 2 menit 30 detik habis.</p><button id="forest-ready-start">SIAP</button></div></div>
+      <div id="forest-complete" class="level-complete" hidden><div><h2>LEVEL 3 SELESAI!</h2><h3 id="forest-result-title">HASIL PEMULIHAN HUTAN</h3><p id="forest-result-copy">Hutan yang dijaga hari ini akan melindungi kehidupan di masa depan.</p><div class="result-stats"><span>Kayu Dipungut <b id="forest-result-wood">0 / 6</b></span><span>Lubang Digali <b id="forest-result-dug">0 / 3</b></span><span>Bibit Ditanam <b id="forest-result-seeded">0 / 3</b></span><span>Bibit Disiram <b id="forest-result-watered">0 / 3</b></span><span>Sisa Waktu <b id="forest-result-time">00:00</b></span></div><button id="forest-continue">LANJUT</button></div></div>
+      <div id="forest-game-over" class="level-complete game-over" hidden><div><h2>WAKTU HABIS!</h2><h3>Hutan belum berhasil dipulihkan.</h3><p id="forest-failed-stage">Progress penghijauan tetap dihitung.</p><button id="forest-retry">COBA LAGI</button><button id="forest-map">PILIH LEVEL</button></div></div>
+    </section>
+    <section id="level-4-screen" class="screen level-four" aria-label="Level 4 Pabrik">
+      <div id="factory-world" class="factory-world">
+        <div id="factory-camera" class="environment-camera factory-camera overview">
+          <div class="factory-background"></div>
+          <div id="factory-sites" class="factory-sites"></div>
+          <div id="factory-player" class="park-player factory-player"><img id="factory-player-sprite" src="assets/player-motions/up/idle.png" alt="Karakter pemain"></div>
+          <div id="factory-prompt" class="interaction-prompt factory-prompt">[E] PERIKSA</div>
+        </div>
+      </div>
+      <div class="factory-hud"><small id="factory-stage-label">TAHAP 1 / 3</small><strong id="factory-objective">BERSIHKAN 4 NODA LANTAI</strong><span id="factory-progress">0 / 4</span></div>
+      <div id="factory-timer-hud" class="timer-hud"><strong>WAKTU</strong><span id="factory-timer">02:30</span></div>
+      <div id="factory-feedback" class="level-feedback"></div>
+      <div class="touch-controls factory-touch" aria-label="Kontrol sentuh Level 4"><button data-factory-key="w">▲</button><button data-factory-key="a">◀</button><button data-factory-key="s">▼</button><button data-factory-key="d">▶</button><button id="factory-touch-interact">E</button></div>
+      <div id="factory-opening" class="opening-dialog factory-dialog"><img src="assets/level1/characters/pose-2.png" alt="Karakter utama"><div class="dialog-box"><div class="dialog-nameplate"><img src="assets/level1/ui/nameplate.png" alt=""><strong id="factory-opening-name">Pemain</strong></div><img src="assets/level1/ui/dialog.png" alt=""><p id="factory-dialog-text"></p><small>TAP UNTUK LANJUT</small></div></div>
+      <div id="factory-closing" class="opening-dialog factory-dialog hidden"><img src="assets/level1/characters/pose-1.png" alt="Karakter utama"><div class="dialog-box"><div class="dialog-nameplate"><img src="assets/level1/ui/nameplate.png" alt=""><strong id="factory-closing-name">Pemain</strong></div><img src="assets/level1/ui/dialog.png" alt=""><p id="factory-closing-text"></p><small>TAP UNTUK LANJUT</small></div></div>
+      <div id="factory-hold" class="factory-hold" hidden><strong id="factory-hold-label">TAHAN E UNTUK MEMBERSIHKAN</strong><span><i id="factory-hold-fill"></i></span></div>
+      <div id="factory-site-dialog" class="factory-site-dialog" hidden><div><small>HASIL IDENTIFIKASI</small><h2 id="factory-site-dialog-title">KERUSAKAN DITEMUKAN</h2><p id="factory-site-dialog-copy"></p><button id="factory-site-dialog-close" type="button">LANJUT</button></div></div>
+      <div id="factory-minigame" class="factory-minigame" hidden><div class="factory-panel"><span id="factory-task-time" class="factory-task-time">02:30</span><small id="minigame-counter">TAHAP 2 / 3</small><h2 id="minigame-title">PILAH LIMBAH</h2><p id="minigame-help"></p><div id="minigame-content"></div><button id="close-minigame" class="minigame-close">KEMBALI</button></div></div>
+      <div id="factory-complete" class="level-complete" hidden><div><h2>LEVEL 4 SELESAI!</h2><h3 id="factory-result-title">PABRIK PULIH DAN AMAN</h3><p id="factory-result-copy">Industri yang bertanggung jawab dapat berjalan bersama dengan lingkungan.</p><div class="result-stats"><span>Noda Dibersihkan <b id="factory-result-floor">0 / 4</b></span><span>Limbah Dipilah <b id="factory-result-waste">0 / 12</b></span><span>Filter Udara <b id="factory-result-filter">0%</b></span><span>Sisa Waktu <b id="factory-result-time">00:00</b></span></div><button id="factory-continue">LANJUT</button></div></div>
+      <div id="factory-game-over" class="level-complete game-over" hidden><div><h2>WAKTU HABIS!</h2><h3>Sumber pencemaran belum terkendali.</h3><p id="factory-failed-progress">Progres pemulihan tetap dihitung.</p><button id="factory-retry">COBA LAGI</button><button id="factory-map">PILIH LEVEL</button></div></div>
+    </section>
+    <button id="pause-button" class="pause-button" aria-label="Pause" hidden><span></span><span></span></button>
+    <div id="pause-overlay" class="pause-overlay" hidden>
+      <div class="pause-panel" role="dialog" aria-modal="true" aria-labelledby="pause-title">
+        <h2 id="pause-title">PAUSE</h2>
+        <button id="pause-save" class="pause-action">SIMPAN PROGRES</button>
+        <button id="resume-button" class="pause-action primary">LANJUT</button>
+        <button id="exit-button" class="pause-action danger">KELUAR KE MENU</button>
+      </div>
+    </div>
+    <div id="save-slots-modal" class="utility-modal save-slots-modal" role="dialog" aria-modal="true" aria-labelledby="save-slots-title" hidden>
+      <div class="save-slots-card">
+        <small id="save-slots-kicker">SIMPAN PERJALANAN</small>
+        <h2 id="save-slots-title">PILIH SLOT</h2>
+        <p id="save-slots-description">Pilih tempat untuk menyimpan checkpoint perjalanan.</p>
+        <div id="save-slots-list" class="save-slots-list"></div>
+        <button id="save-slots-cancel" class="save-slots-cancel" type="button">BATAL</button>
+      </div>
+    </div>
+    <div id="exit-confirm-modal" class="utility-modal" hidden><div><h2>Keluar ke Menu Utama?</h2><p>Progres yang belum disimpan akan hilang. Progres pada slot penyimpanan tetap aman.</p><div class="utility-actions"><button id="exit-confirm-yes" class="danger">YA, KELUAR</button><button id="exit-confirm-no">TETAP DI SINI</button></div></div></div>
+    <div id="settings-panel" class="utility-modal settings-modal" role="dialog" aria-modal="true" aria-labelledby="settings-title" hidden>
+      <article class="settings-card">
+        <header class="settings-header">
+          <span class="settings-title-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><path d="M24 8v32M24 27c-7-1-11-5-12-12 7 1 11 5 12 12Zm0 6c6-1 10-4 12-10-6 0-10 4-12 10Z"/></svg>
+          </span>
+          <h2 id="settings-title">PENGATURAN</h2>
+          <span class="settings-title-rule" aria-hidden="true"></span>
+        </header>
+
+        <div class="settings-list">
+          <label class="settings-control settings-item">
+            <span class="settings-item-label">
+              <span class="settings-item-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M5 9v6h4l5 4V5L9 9H5Z"/><path d="M17 9.5c1.3 1.4 1.3 3.6 0 5M19.5 7c2.7 2.8 2.7 7.2 0 10"/></svg>
+              </span>
+              <span>Audio</span>
+            </span>
+            <button id="settings-audio-toggle" class="switch active" type="button" aria-label="Audio aktif"><i></i></button>
+          </label>
+
+          <label class="settings-slider settings-item">
+            <span class="settings-item-label">
+              <span class="settings-item-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M9 18V6l10-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
+              </span>
+              <span>Musik &amp; ambience</span>
+            </span>
+            <input id="music-volume" type="range" min="0" max="100" value="100" aria-label="Volume musik dan ambience">
+          </label>
+
+          <label class="settings-slider settings-item">
+            <span class="settings-item-label">
+              <span class="settings-item-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M3 12h2m2-4v8m3-11v14m3-9v4m3-7v10m3-5h2"/></svg>
+              </span>
+              <span>Efek suara</span>
+            </span>
+            <input id="sfx-volume" type="range" min="0" max="100" value="100" aria-label="Volume efek suara">
+          </label>
+        </div>
+
+        <button id="settings-close" class="settings-close" type="button">TUTUP</button>
+      </article>
+    </div>
+    <div id="info-panel" class="utility-modal info-panel" role="dialog" aria-modal="true" aria-labelledby="credits-title" hidden>
+      <article class="credits-card">
+        <div class="credits-topline" aria-hidden="true">
+          <span>KELOMPOK 11</span>
+          <span>GAME DEVELOPMENT</span>
+        </div>
+
+        <header class="credits-header">
+          <span class="credits-emblem" aria-hidden="true"><i></i></span>
+          <p class="credits-kicker">OFFICIAL GAME CREDITS</p>
+          <h2 id="credits-title">CREDITS</h2>
+          <h3>Petualangan Hijau</h3>
+          <p class="credits-summary">Gim edukasi interaktif tentang kepedulian lingkungan, pengelolaan sampah, dan pemulihan ekosistem.</p>
+        </header>
+
+        <div class="credits-disciplines" aria-label="Bidang pengembangan">
+          <span>Game Design</span>
+          <span>Programming</span>
+          <span>Visual &amp; UI</span>
+          <span>Story &amp; Education</span>
+        </div>
+
+        <section class="credits-team" aria-labelledby="credits-team-title">
+          <div class="credits-section-heading">
+            <span>01</span>
+            <h4 id="credits-team-title">CORE DEVELOPMENT TEAM</h4>
+          </div>
+          <div class="credits-members">
+            <div class="credit-member">
+              <span class="member-initial">MZ</span>
+              <div><strong>Muhammad Zaky Arrosyid</strong><small>Game Development Team</small></div>
+            </div>
+            <div class="credit-member">
+              <span class="member-initial">AE</span>
+              <div><strong>Asa Enggal Daviana</strong><small>Game Development Team</small></div>
+            </div>
+            <div class="credit-member">
+              <span class="member-initial">RJ</span>
+              <div><strong>Rahmadina Jogi Siregar</strong><small>Game Development Team</small></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="credits-meta" aria-label="Informasi produksi">
+          <div><small>MENTOR</small><strong>Muhammad Hubbi El Fairuz</strong></div>
+          <div><small>INSTITUSI</small><strong>SMK Negeri 1 Cibinong</strong></div>
+          <div class="special-thanks"><small>SPECIAL THANKS</small><strong>Cakrawala Project · Nexus Ananta</strong></div>
+        </section>
+
+        <footer class="credits-footer">
+          <p>Dibuat dengan semangat untuk bumi yang lebih hijau.</p>
+          <button id="info-close" class="credits-close">KEMBALI KE MENU</button>
+        </footer>
+      </article>
+    </div>
+    <div id="global-toast" class="global-toast"></div>
+    <div id="shared-level-countdown" class="level-countdown" hidden><strong>3</strong></div>
+    <div id="transition-curtain" class="transition-curtain"></div>
+    <audio id="menu-bgm" src="assets/audio/menu-bgm.mp3" loop preload="auto"></audio>
+    <audio id="prologue-bgm" src="assets/audio/prologue-bgm.mp3" loop preload="auto"></audio>
+    <audio id="click-sfx" src="assets/audio/gameplay/button-click.mp3" preload="auto"></audio>
+    <audio id="start-sfx" src="assets/audio/start.mp3" preload="auto"></audio>
+    <audio id="level-countdown-sfx" src="assets/audio/gameplay/countdown-321.mp3" preload="auto"></audio>
+    <audio id="gameplay-intense" src="assets/audio/gameplay/intense.mp3" loop preload="auto"></audio>
+    <audio id="gameplay-time-warning" src="assets/audio/gameplay/time-warning.mp3" loop preload="auto"></audio>
+    <audio id="level1-steps" src="assets/audio/level1-bgm.mp3" loop preload="auto"></audio>
+    <audio id="river-steps" src="assets/audio/level1-bgm.mp3" loop preload="auto"></audio>
+    <audio id="level1-ambient" src="assets/audio/level1-ambient.mp3" loop preload="auto"></audio>
+    <audio id="level1-pickup" src="assets/audio/level1-pickup.mp3" preload="auto"></audio>
+    <audio id="level1-dispose" src="assets/audio/level1-dispose.mp3" preload="auto"></audio>
+    <audio id="level1-success" src="assets/audio/level1-success.mp3" preload="auto"></audio>
+    <audio id="level1-fail" src="assets/audio/level1-fail.mp3" preload="auto"></audio>
+    <audio id="pause-idle" src="assets/audio/pause-idle.mp3" loop preload="auto"></audio>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
